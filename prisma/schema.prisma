@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String    @unique
+  post          Post[]
+  like          Like[]
+  bookmark      Bookmark[]
+  comment       Comment[]
+  created_at    DateTime  @default(now()) @map(name: "created_at")
+  updated_at    DateTime  @updatedAt @map(name: "updated_at")
+}
+
+model Post {
+  id            Int       @id @default(autoincrement())
+  type          String
+  content       String
+  user_id       Int
+  user          User      @relation(fields: [user_id], references: [id])
+  like          Like[]
+  bookmark      Bookmark[]
+  comment       Comment[]
+  created_at    DateTime  @default(now()) @map(name: "created_at")
+  updated_at    DateTime  @updatedAt @map(name: "updated_at")
+}
+
+model Like {
+  id            Int     @id @default(autoincrement())
+  post_id       Int
+  post          Post    @relation(fields: [post_id], references: [id])
+  user_id       Int
+  user          User    @relation(fields: [user_id], references: [id])
+  @@unique([post_id,user_id])
+}
+
+model Bookmark {
+  id            Int     @id @default(autoincrement())
+  post_id       Int
+  post          Post    @relation(fields: [post_id], references: [id])
+  user_id       Int
+  user          User    @relation(fields: [user_id], references: [id])
+  @@unique([post_id,user_id])
+}
+
+model Comment {
+  id            Int     @id @default(autoincrement())
+  post_id       Int
+  post          Post    @relation(fields: [post_id], references: [id])
+  user_id       Int
+  user          User    @relation(fields: [user_id], references: [id])
+  comment       String
+  created_at    DateTime  @default(now()) @map(name: "created_at")
+  updated_at    DateTime  @updatedAt @map(name: "updated_at")
+}
