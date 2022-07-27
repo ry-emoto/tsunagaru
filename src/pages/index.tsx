@@ -1,5 +1,13 @@
-const Home = () => {
-  return <div>Home</div>;
+import { NextSeo } from 'next-seo';
+import CommonMenu from '../components/common/CommonMenu';
+
+const index = () => {
+  return (
+    <>
+      <NextSeo title='ホーム|Tsunagaru' description='Tsunagaruホームページ' />
+      <CommonMenu>Home</CommonMenu>
+    </>
+  );
 };
 
-export default Home;
+export default index;
