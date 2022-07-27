@@ -20,6 +20,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/lab": "^5.0.0-alpha.92",
     "@mui/material": "^5.9.2",
+    "@mui/x-data-grid": "^5.14.0",
     "@prisma/client": "4.1.0",
     "axios": "^0.27.2",
     "date-fns": "^2.29.1",
