@@ -35,7 +35,7 @@ const index = (props: Props) => {
 export default index;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const API_URL = process.env.NEXT_PUBLIC_VERCEL_URL;
+  const API_URL = process.env.NEXTAUTH_URL;
 
   if (typeof API_URL === 'undefined') {
     return {
